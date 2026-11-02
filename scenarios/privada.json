@@ -1,0 +1,19 @@
+{
+  "id": "banco-privado",
+  "title": "Cloud exclusivo para operaciones internas de un banco",
+  "organizations": ["banco-a"],
+  "infrastructures": [
+    {
+      "id": "cloud-banco",
+      "provider": "banco-a",
+      "deployment": "privada",
+      "resources": ["compute", "storage", "self-service-api"]
+    }
+  ],
+  "integrated": false,
+  "common_governance": false,
+  "community_exclusive": false,
+  "exclusive_organization": true,
+  "claimed_model": "privada",
+  "claimed_multicloud": false
+}

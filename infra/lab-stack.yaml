@@ -1,0 +1,91 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: UCAB Lab 5 - fronteras de datos en nube publica
+
+Rules:
+  OhioOnly:
+    Assertions:
+      - Assert: !Equals [!Ref "AWS::Region", us-east-2]
+        AssertDescription: Este laboratorio solo puede desplegarse en US East (Ohio), us-east-2.
+
+Resources:
+  IntakeBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+            BucketKeyEnabled: false
+      BucketName: !Sub "ucab-lab-5-intake-${AWS::AccountId}-${AWS::Region}"
+      LifecycleConfiguration:
+        Rules:
+          - Id: RemoveOldNoncurrentVersions
+            Status: Enabled
+            NoncurrentVersionExpiration:
+              NoncurrentDays: 1
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      Tags:
+        - Key: Course
+          Value: UCAB-Cloud
+        - Key: Lab
+          Value: "5"
+        - Key: Purpose
+          Value: intake
+        - Key: Provider
+          Value: aws
+        - Key: DeploymentModel
+          Value: public-cloud
+      VersioningConfiguration:
+        Status: Enabled
+
+  CuratedBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+            BucketKeyEnabled: false
+      BucketName: !Sub "ucab-lab-5-curated-${AWS::AccountId}-${AWS::Region}"
+      LifecycleConfiguration:
+        Rules:
+          - Id: RemoveOldNoncurrentVersions
+            Status: Enabled
+            NoncurrentVersionExpiration:
+              NoncurrentDays: 1
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      Tags:
+        - Key: Course
+          Value: UCAB-Cloud
+        - Key: Lab
+          Value: "5"
+        - Key: Purpose
+          Value: curated
+        - Key: Provider
+          Value: aws
+        - Key: DeploymentModel
+          Value: public-cloud
+      VersioningConfiguration:
+        Status: Enabled
+
+Outputs:
+  Region:
+    Value: !Ref "AWS::Region"
+  IntakeBucketName:
+    Value: !Ref IntakeBucket
+  CuratedBucketName:
+    Value: !Ref CuratedBucket

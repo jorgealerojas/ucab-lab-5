@@ -1,0 +1,14 @@
+[
+  {
+    "id": "obs-101",
+    "category": "temperatura",
+    "value": 27.9,
+    "timestamp": "2026-10-16T09:00:00Z"
+  },
+  {
+    "id": "obs-102",
+    "category": "humedad",
+    "value": 65,
+    "timestamp": "2026-10-16T09:05:00Z"
+  }
+]

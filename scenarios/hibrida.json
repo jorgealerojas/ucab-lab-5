@@ -1,0 +1,26 @@
+{
+  "id": "hospital-hibrido",
+  "title": "Portal público conectado con datos clínicos internos",
+  "organizations": ["hospital-a"],
+  "infrastructures": [
+    {
+      "id": "cloud-clinico",
+      "provider": "hospital-a",
+      "deployment": "privada",
+      "counts_for_multicloud": false,
+      "resources": ["historia-clinica"]
+    },
+    {
+      "id": "portal-aws",
+      "provider": "aws",
+      "deployment": "publica",
+      "resources": ["portal-pacientes"]
+    }
+  ],
+  "integrated": true,
+  "common_governance": false,
+  "community_exclusive": false,
+  "exclusive_organization": true,
+  "claimed_model": "hibrida",
+  "claimed_multicloud": false
+}

@@ -1,0 +1,19 @@
+{
+  "id": "consorcio-universitario",
+  "title": "Cloud de investigación con gobierno compartido",
+  "organizations": ["ucab", "unimet", "usb"],
+  "infrastructures": [
+    {
+      "id": "cloud-consorcio",
+      "provider": "consorcio-universitario",
+      "deployment": "comunitaria",
+      "resources": ["compute", "storage", "federated-identity"]
+    }
+  ],
+  "integrated": false,
+  "common_governance": true,
+  "community_exclusive": true,
+  "exclusive_organization": false,
+  "claimed_model": "comunitaria",
+  "claimed_multicloud": false
+}

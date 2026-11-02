@@ -1,0 +1,42 @@
+[
+  {
+    "id": "obs-001",
+    "category": "temperatura",
+    "value": 28.4,
+    "timestamp": "2026-10-15T14:00:00Z"
+  },
+  {
+    "id": "obs-002",
+    "category": "humedad",
+    "value": 71,
+    "timestamp": "2026-10-15T14:05:00Z",
+    "correo": "persona@example.invalid"
+  },
+  {
+    "id": "obs-003",
+    "category": "temperatura",
+    "value": 29.1,
+    "timestamp": "2026-10-15T14:10:00Z"
+  },
+  {
+    "id": "obs-004",
+    "category": "ruido",
+    "value": "alto",
+    "timestamp": "2026-10-15T14:15:00Z"
+  },
+  {
+    "id": "obs-005",
+    "category": "ocupacion",
+    "value": 18,
+    "timestamp": "2026-10-15T14:20:00Z",
+    "contacto": {
+      "telefono": "+58-000-0000000"
+    }
+  },
+  {
+    "id": "obs-006",
+    "category": "humedad",
+    "value": 68,
+    "timestamp": "2026-10-15T14:25:00Z"
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "id": "referencia-aws-ohio",
+  "title": "Datos restringidos y aprobados en AWS Ohio",
+  "organizations": ["universidad-a"],
+  "infrastructures": [
+    {
+      "id": "aws-ohio",
+      "provider": "aws",
+      "deployment": "publica",
+      "resources": ["bucket-recepcion", "bucket-aprobados"]
+    }
+  ],
+  "integrated": false,
+  "common_governance": false,
+  "community_exclusive": false,
+  "exclusive_organization": false,
+  "claimed_model": "publica",
+  "claimed_multicloud": false
+}

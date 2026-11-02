@@ -1,0 +1,25 @@
+{
+  "id": "comercio-multinube",
+  "title": "Aplicación y analítica en proveedores públicos diferentes",
+  "organizations": ["comercio-a"],
+  "infrastructures": [
+    {
+      "id": "aplicacion-aws",
+      "provider": "aws",
+      "deployment": "publica",
+      "resources": ["web", "storage"]
+    },
+    {
+      "id": "analitica-proveedor-b",
+      "provider": "proveedor-b",
+      "deployment": "publica",
+      "resources": ["analytics"]
+    }
+  ],
+  "integrated": true,
+  "common_governance": false,
+  "community_exclusive": false,
+  "exclusive_organization": false,
+  "claimed_model": "publica",
+  "claimed_multicloud": true
+}
