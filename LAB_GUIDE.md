@@ -16,6 +16,23 @@ La pregunta central es:
 
 > ¿Qué evidencia permite afirmar cuál es el modelo de despliegue?
 
+## Alcance y límites de la simulación
+
+Este laboratorio es una **simulación didáctica de decisiones de despliegue**, no una implementación completa de todos los modelos estudiados.
+
+La parte que sí se despliega y comprueba de forma real es una arquitectura dentro de la **nube pública de AWS**: dos buckets S3 en Ohio, sus controles de acceso, el movimiento de datos y la identidad de la cuenta. Los buckets de recepción y aprobados son fronteras lógicas dentro del mismo proveedor; no representan dos nubes diferentes.
+
+Los casos de nube privada, híbrida, comunitaria y multinube se representan mediante manifiestos JSON que describen organizaciones, infraestructuras, proveedores, integración y gobierno. Estos escenarios permiten practicar la clasificación y la toma de decisiones sin afirmar que esos entornos existen realmente en la cuenta del laboratorio.
+
+La práctica adopta este enfoque porque solo se dispone de una cuenta AWS limitada a Ohio y de 105 minutos. Una prueba completamente real requeriría, según el caso:
+
+- Una infraestructura cloud de uso exclusivo para representar nube privada.
+- Una conexión funcional entre infraestructuras diferentes para representar nube híbrida.
+- Infraestructura dedicada, participantes y gobierno compartido para representar nube comunitaria.
+- Cuentas y servicios operativos de al menos dos proveedores para representar multinube.
+
+Por tanto, los resultados permiten comprobar conceptos, evidencias y errores de clasificación, pero no medir de manera real la conectividad, latencia, identidad federada, gobierno, costos de transferencia, fallos o carga operativa de esos modelos. Cuando la guía indique que un escenario es privado, híbrido, comunitario o multinube, se refiere al **escenario descrito**, no a los buckets desplegados en AWS.
+
 ## Reglas de operación
 
 - Usa únicamente `us-east-2`.
@@ -32,9 +49,9 @@ Toma las capturas necesarias de cada paso que confirme un resultado. Como mínim
 
 1. Región efectiva y diagnóstico aprobado.
 2. Pruebas locales aprobadas.
-3. Stack desplegado y nombres de los dos buckets.
+3. Stack desplegado y vista de los dos buckets en la consola S3.
 4. Inventario con región, cifrado, versionado y Block Public Access.
-5. Resultado de la política con registros aceptados y rechazados.
+5. Resultado de la política y vista de los objetos creados en cada bucket.
 6. Acceso anónimo rechazado.
 7. Acceso temporal autorizado, sin revelar una URL todavía vigente.
 8. Clasificación de los cinco escenarios.
@@ -168,6 +185,14 @@ Bucket de aprobados: ucab-lab-5-curated-...
 
 Los sufijos dependen de tu cuenta y región. Ambos nombres deben terminar en `us-east-2`.
 
+Abre **Amazon S3 → Buckets** en la consola. Debes observar exactamente dos buckets del laboratorio, uno con `intake` y otro con `curated` en el nombre. Los dos deben indicar **US East (Ohio) `us-east-2`**.
+
+La siguiente imagen sirve como referencia visual. El número de cuenta y la fecha de creación serán diferentes en tu ejecución.
+
+![Referencia de los dos buckets creados en Ohio](docs/images/step-09-s3-buckets.png)
+
+Toma una captura equivalente donde se distingan ambos nombres y la región. Esta pantalla confirma la creación física de los recursos, pero no demuestra por sí sola un modelo privado, híbrido, comunitario o multinube: los dos buckets continúan dentro de la nube pública de AWS.
+
 ### 10. Generar el primer inventario
 
 El inventario consulta STS, CloudFormation y las configuraciones de S3. Registra proveedor, región, cifrado, versionado y bloqueo de acceso público.
@@ -213,6 +238,16 @@ EXPERIMENTO COMPLETADO
 ```
 
 El reporte debe indicar seis entradas, tres aceptadas y tres rechazadas. Cada rechazo incluye su razón.
+
+Después de que el comando termine, actualiza la consola de S3 y abre el bucket cuyo nombre contiene `intake`. En la pestaña **Objects** debe aparecer el prefijo `incoming/`, porque allí se conservó el archivo original.
+
+![Referencia del bucket de recepción después del experimento](docs/images/step-12-intake-bucket.png)
+
+Regresa a la lista de buckets y abre el que contiene `curated`. En **Objects** deben aparecer los prefijos `approved/` y `reports/`: el primero contiene los registros que superaron la política y el segundo contiene el reporte auditable.
+
+![Referencia del bucket de aprobados después del experimento](docs/images/step-12-curated-bucket.png)
+
+Los nombres completos y las fechas cambiarán según la cuenta. Toma una captura de cada bucket donde se distingan los prefijos esperados. Estas dos vistas muestran separación lógica de datos dentro de AWS; no constituyen una nube híbrida porque ambos buckets pertenecen al mismo proveedor y entorno público.
 
 ### 13. Revisar el reporte local
 

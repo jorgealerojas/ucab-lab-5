@@ -84,6 +84,7 @@ No se necesitan credenciales locales, Docker, servidores virtuales ni servicios 
 | `TROUBLESHOOTING.md` | Diagnóstico de errores frecuentes y recuperación segura. |
 | `app/` | Política de datos, inventario, clasificación y resumen técnico. |
 | `data/` | Registros ficticios válidos y mezclados. |
+| `docs/images/` | Referencias visuales utilizadas por la guía paso a paso. |
 | `scenarios/` | Cinco arquitecturas para analizar. |
 | `infra/` | Plantilla CloudFormation limitada a Ohio. |
 | `scripts/` | Diagnóstico, despliegue, experimento, verificación y limpieza. |
